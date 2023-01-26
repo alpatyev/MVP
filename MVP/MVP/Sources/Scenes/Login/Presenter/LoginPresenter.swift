@@ -7,22 +7,25 @@
 
 import Foundation
 
-// MARK: - Presenter protocol
-
-protocol LoginPresenterProtocol: AnyObject {
-    var view: LoginViewProtocol? { get set }
-    func viewDidLoaded()
-}
-
 // MARK: - Presenter class
 
-final class LoginPresenter: LoginPresenterProtocol {
+final class LoginPresenter: PresenterProtocol {
+    
+    // MARK: - Model
+    
+    var model: PersonsModelProtocol
     
     // MARK: - View
     
-    weak var view: LoginViewProtocol?
+    weak var view: ViewProtocol?
     
-    // MARK: - View has loaded
+    // MARK: - Lifecycle
     
-    func viewDidLoaded() {}
+    init(with model: PersonsModelProtocol) {
+        self.model = model
+    }
+
+    // MARK: - View loaded
+    
+    func viewLoaded() {}
 }

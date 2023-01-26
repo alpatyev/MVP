@@ -16,6 +16,7 @@
 		64A726EE297EC60A00CCCC02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A726ED297EC60A00CCCC02 /* SceneDelegate.swift */; };
 		64A726F5297EC60F00CCCC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A726F4297EC60F00CCCC02 /* Assets.xcassets */; };
 		64A726F8297EC60F00CCCC02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A726F6297EC60F00CCCC02 /* LaunchScreen.storyboard */; };
+		64D0465F2982B58C00E01F14 /* CommonProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0465E2982B58B00E01F14 /* CommonProtocols.swift */; };
 		64E6B3E6297FE3B500DA5A5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E6B3E5297FE3B400DA5A5D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		64A726F4297EC60F00CCCC02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64A726F7297EC60F00CCCC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64A726F9297EC60F00CCCC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64D0465E2982B58B00E01F14 /* CommonProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProtocols.swift; sourceTree = "<group>"; };
 		64E6B3E5297FE3B400DA5A5D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,14 @@
 			path = MVP;
 			sourceTree = "<group>";
 		};
+		64D0465D2982B56E00E01F14 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				64D0465E2982B58B00E01F14 /* CommonProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		64E6B3E7297FE43500DA5A5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				64E6B3E9297FE45800DA5A5D /* Application */,
+				64D0465D2982B56E00E01F14 /* Protocols */,
 				642A9A39298001E800EC4B56 /* Models */,
 				644A9C4329815D0C00B2D696 /* Scenes */,
 			);
@@ -238,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				644A9C3A2981552E00B2D696 /* DataModel.swift in Sources */,
+				64D0465F2982B58C00E01F14 /* CommonProtocols.swift in Sources */,
 				64A726EC297EC60A00CCCC02 /* AppDelegate.swift in Sources */,
 				644A9C4029815C8200B2D696 /* LoginPresenter.swift in Sources */,
 				64A726EE297EC60A00CCCC02 /* SceneDelegate.swift in Sources */,

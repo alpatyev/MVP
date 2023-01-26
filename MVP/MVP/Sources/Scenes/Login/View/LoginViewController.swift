@@ -7,23 +7,18 @@
 
 import UIKit
 
-// MARK: - LoginView protocol
-
-protocol LoginViewProtocol: UIViewController {
-    var presenter: LoginPresenterProtocol { get set }
-}
 
 // MARK: - View class
 
-final class LoginViewController: UIViewController, LoginViewProtocol {
+final class LoginViewController: UIViewController, ViewProtocol {
     
     // MARK: - Prenter
     
-    var presenter: LoginPresenterProtocol
+    var presenter: PresenterProtocol
     
     // MARK: - Lifecycle
     
-    init(with presenter: LoginPresenterProtocol) {
+    init(with presenter: PresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,6 +30,6 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.view = self
-        presenter.viewDidLoaded()
+        presenter.viewLoaded()
     }
 }
