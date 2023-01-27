@@ -5,7 +5,7 @@
 //  Created by Nikita Alpatiev on 1/27/23.
 //
 
-import UIKit
+import Foundation
 
 final class DetailPresenter: DetailPresenterProtocol {
     

@@ -23,5 +23,6 @@ final class StudentsGroupModel: PersonsModelProtocol {
     
     init() {
         self.participants = [Student(name: "", image: "", score: 0)]
+        // data request
     }
 }
