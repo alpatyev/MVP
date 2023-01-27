@@ -9,9 +9,10 @@ import Foundation
 
 final class StudentsListPresenter: StudentsListPresenterProtocol {
     
-    // MARK: - Model
+    // MARK: - Models
     
     var model: PersonsModelProtocol
+    var student: IDProtocol
     
     // MARK: - View
     
@@ -19,7 +20,8 @@ final class StudentsListPresenter: StudentsListPresenterProtocol {
     
     // MARK: - Lifecycle
     
-    init(with model: PersonsModelProtocol) {
+    init(with model: PersonsModelProtocol, selected student: IDProtocol) {
         self.model = model
+        self.student = student
     }
 }

@@ -11,8 +11,9 @@ import UIKit
 
 protocol StudentsListPresenterProtocol: AnyObject {
     var model: PersonsModelProtocol { get set }
+    var student: IDProtocol { get set }
     var view: StudentsListViewProtocol? { get set }
-    init(with model: PersonsModelProtocol)
+    init(with model: PersonsModelProtocol, selected student: IDProtocol)
 }
 
 // MARK: - Login view protocol

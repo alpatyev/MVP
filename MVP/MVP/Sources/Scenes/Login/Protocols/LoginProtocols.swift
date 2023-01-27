@@ -25,4 +25,5 @@ protocol LoginViewProtocol: UIViewController {
     init(with presenter: LoginPresenterProtocol)
     func highlightTextField()
     func revertHiglightedTextField()
+    func performViewController(_ controller: UIViewController)
 }

@@ -17,11 +17,12 @@ protocol IDProtocol: Codable {
 
 protocol PersonsModelProtocol {
     var participants: [IDProtocol] { get set }
+    func findPerson(named: String?) -> IDProtocol?
 }
 
 // MARK: - Builder protocol
 
 protocol SceneBuilderProtocol {
     static func createLoginScene(with data: PersonsModelProtocol) -> UIViewController?
-    static func createStudentListScene(with data: PersonsModelProtocol) -> UIViewController?
+    static func createStudentListScene(with data: PersonsModelProtocol, selected person: IDProtocol) -> UIViewController?
 }

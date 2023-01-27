@@ -15,7 +15,9 @@ final class SceneBuilder: SceneBuilderProtocol {
         return view
     }
     
-    static func createStudentListScene(with data: PersonsModelProtocol) -> UIViewController? {
-        nil
+    static func createStudentListScene(with data: PersonsModelProtocol, selected person: IDProtocol) -> UIViewController? {
+        let presenter = StudentsListPresenter(with: data, selected: person)
+        let view = StudentsListView(with: presenter)
+        return view
     }
 }

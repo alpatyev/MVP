@@ -28,5 +28,7 @@ final class StudentsListView: UIViewController, StudentsListViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(presenter.student)
+        view.backgroundColor = .red
     }
 }

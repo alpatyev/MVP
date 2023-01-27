@@ -74,6 +74,11 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
         setupLayout()
     }
     
+    func performViewController(_ controller: UIViewController) {
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true, completion: nil)
+    }
+    
     // MARK: - Setups
     
     private func setupView() {

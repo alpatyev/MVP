@@ -25,7 +25,15 @@ final class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Private methods
     
-    private func findUser(_ name: String) { }
+    private func findPersonWith(name: String?) {
+        guard let person = model.findPerson(named: name) else {
+            return
+        }
+        guard let viewController = SceneBuilder.createStudentListScene(with: model, selected: person) else {
+            return
+        }
+        view?.performViewController(viewController)
+    }
     
     // MARK: - View send events
     
@@ -35,15 +43,11 @@ final class LoginPresenter: LoginPresenterProtocol {
     
     func loginButtonTapped(text: String?) {
         view?.revertHiglightedTextField()
-        if let name = text {
-            findUser(name)
-        }
+        findPersonWith(name: text)
     }
     
     func keyboardReturnTapped(text: String?) {
         view?.revertHiglightedTextField()
-        if let name = text {
-            findUser(name)
-        }
+        findPersonWith(name: text)
     }
 }

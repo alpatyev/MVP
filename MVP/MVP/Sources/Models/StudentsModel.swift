@@ -22,7 +22,18 @@ final class StudentsGroupModel: PersonsModelProtocol {
     // MARK: - Lifecycle
     
     init() {
-        self.participants = [Student(name: "", image: "", score: 0)]
-        // data request
+        self.participants = [Student(name: "abc", image: "image", score: 123)]
+    }
+    
+    // MARK: - Common methods
+    
+    func findPerson(named: String?) -> IDProtocol? {
+        guard named != nil && named != "" else {
+            return nil
+        }
+        guard let index = participants.firstIndex(where: { $0.name == named } ) else {
+            return nil
+        }
+        return participants[index]
     }
 }
