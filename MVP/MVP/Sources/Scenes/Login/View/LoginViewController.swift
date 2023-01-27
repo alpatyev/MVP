@@ -6,21 +6,20 @@
 //
 
 import UIKit
+import SnapKit
 
-
-// MARK: - View class
-
-final class LoginViewController: UIViewController, ViewProtocol {
+final class LoginViewController: UIViewController, LoginViewProtocol {
     
     // MARK: - Prenter
     
-    var presenter: PresenterProtocol
+    var presenter: LoginPresenterProtocol
     
     // MARK: - Lifecycle
     
-    init(with presenter: PresenterProtocol) {
+    init(with presenter: LoginPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        presenter.view = self
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +28,5 @@ final class LoginViewController: UIViewController, ViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.view = self
-        presenter.viewLoaded()
     }
 }

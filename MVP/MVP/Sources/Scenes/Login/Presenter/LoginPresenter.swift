@@ -5,11 +5,9 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-import Foundation
+import UIKit
 
-// MARK: - Presenter class
-
-final class LoginPresenter: PresenterProtocol {
+final class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Model
     
@@ -17,15 +15,11 @@ final class LoginPresenter: PresenterProtocol {
     
     // MARK: - View
     
-    weak var view: ViewProtocol?
+    weak var view: LoginViewProtocol?
     
     // MARK: - Lifecycle
     
     init(with model: PersonsModelProtocol) {
         self.model = model
     }
-
-    // MARK: - View loaded
-    
-    func viewLoaded() {}
 }

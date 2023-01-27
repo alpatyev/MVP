@@ -5,8 +5,6 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-import Foundation
-
 // MARK: - Model entities
 
 struct Student: IDProtocol {
@@ -25,10 +23,5 @@ final class StudentsGroupModel: PersonsModelProtocol {
     
     init() {
         self.participants = [Student(name: "", image: "", score: 0)]
-        fetchData()
-    }
-    
-    private func fetchData() {
-        // call dataManager
     }
 }

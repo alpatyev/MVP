@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 final class SceneBuilder: SceneBuilderProtocol {
-    static func createLoginScene(with data: PersonsModelProtocol) -> ViewProtocol? {
+    static func createLoginScene(with data: PersonsModelProtocol) -> UIViewController? {
         let presenter = LoginPresenter(with: data)
         let view = LoginViewController(with: presenter)
         return view
     }
     
-    static func createStudentListScene(with data: PersonsModelProtocol) -> ViewProtocol? {
+    static func createStudentListScene(with data: PersonsModelProtocol) -> UIViewController? {
         nil
     }
 }

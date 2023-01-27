@@ -1,22 +1,22 @@
 //
-//  StudentListViewController.swift
+//  DetailViewController.swift
 //  MVP
 //
-//  Created by Nikita Alpatiev on 1/25/23.
+//  Created by Nikita Alpatiev on 1/27/23.
 //
 
 import UIKit
 import SnapKit
 
-final class StudentsListView: UIViewController, StudentsListViewProtocol {
+final class DetailViewController: UIViewController, DetailViewProtocol {
     
     // MARK: - Presenter
     
-    var presenter: StudentsListPresenterProtocol
+    var presenter: DetailPresenterProtocol
     
     // MARK: - Lifecycle
     
-    init(with presenter: StudentsListPresenterProtocol) {
+    init(with presenter: DetailPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         presenter.view = self
