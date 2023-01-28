@@ -14,6 +14,8 @@ protocol StudentsListPresenterProtocol: AnyObject {
     var student: IDProtocol { get set }
     var view: StudentsListViewProtocol? { get set }
     init(with model: PersonsModelProtocol, selected student: IDProtocol)
+    
+    func userTappedItself()
 }
 
 // MARK: - Login view protocol
@@ -21,4 +23,6 @@ protocol StudentsListPresenterProtocol: AnyObject {
 protocol StudentsListViewProtocol: UIViewController {
     var presenter: StudentsListPresenterProtocol { get set }
     init(with presenter: StudentsListPresenterProtocol)
+    
+    func performViewController(_ controller: UIViewController)
 }

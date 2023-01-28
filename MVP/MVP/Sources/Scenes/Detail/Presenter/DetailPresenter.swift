@@ -11,7 +11,7 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     // MARK: - Model
     
-    var model: PersonsModelProtocol
+    var model: IDProtocol
     
     // MARK: - View
     
@@ -19,7 +19,7 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     // MARK: - Lifecycle
     
-    required init(with model: PersonsModelProtocol) {
+    required init(with model: IDProtocol) {
         self.model = model
     }
 }

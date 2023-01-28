@@ -28,5 +28,22 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupHierarchy()
+        setupLayout()
+    }
+    
+    // MARK: - Setups
+    
+    private func setupView() {
+        title = presenter.model.name
+        view.backgroundColor = Constants.Colors.background
+        navigationController?.navigationBar.topItem?.backButtonTitle = "Назад"
+    }
+    
+    private func setupHierarchy() {
+    }
+    
+    private func setupLayout() {
     }
 }

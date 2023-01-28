@@ -5,8 +5,6 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-import Foundation
-
 final class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Model
@@ -23,16 +21,14 @@ final class LoginPresenter: LoginPresenterProtocol {
         self.model = model
     }
     
-    // MARK: - Private methods
+    // MARK: - Move to next scene
     
     private func findPersonWith(name: String?) {
         guard let person = model.findPerson(named: name) else {
             return
         }
-        guard let viewController = SceneBuilder.createStudentListScene(with: model, selected: person) else {
-            return
-        }
-        view?.performViewController(viewController)
+        let mainView = SceneBuilder.createStudentsListScene(with: model, selected: person)
+        view?.performViewController(mainView)
     }
     
     // MARK: - View send events

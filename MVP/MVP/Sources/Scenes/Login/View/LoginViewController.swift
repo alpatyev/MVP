@@ -117,7 +117,7 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     @objc private func loginTapped() {
         presenter.loginButtonTapped(text: nameTextField.text)
     }
-    
+        
     func highlightTextField() {
         view.backgroundColor = Constants.Colors.background.withAlphaComponent(0.65)
     }

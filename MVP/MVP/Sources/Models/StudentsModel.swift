@@ -5,24 +5,20 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-// MARK: - Model entities
-
-struct Student: IDProtocol {
-    var name: String
-    var image: String
-    var score: Int
-}
-
 final class StudentsGroupModel: PersonsModelProtocol {
     
     // MARK: - List of students
     
     var participants: [IDProtocol]
     
+    // MARK: - Last homework number
+    
+    var lastHomeworkNumber: Int = 16
+    
     // MARK: - Lifecycle
     
     init() {
-        self.participants = [Student(name: "abc", image: "image", score: 123)]
+        self.participants = [Student()]
     }
     
     // MARK: - Common methods

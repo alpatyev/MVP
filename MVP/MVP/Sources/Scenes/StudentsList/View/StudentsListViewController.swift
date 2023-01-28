@@ -8,7 +8,19 @@
 import UIKit
 import SnapKit
 
-final class StudentsListView: UIViewController, StudentsListViewProtocol {
+final class StudentsListViewController: UIViewController, StudentsListViewProtocol {
+    
+    // MARK: - UI
+    
+    private lazy var studentView: StudentView = {
+        let subview = StudentView()
+        return subview
+    }()
+    
+    private lazy var studentList: UITableView = {
+        let list = UITableView()
+        return list
+    }()
     
     // MARK: - Presenter
     
@@ -28,7 +40,43 @@ final class StudentsListView: UIViewController, StudentsListViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(presenter.student)
-        view.backgroundColor = .red
+        setupView()
+        setupHierarchy()
+        setupLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            self?.presenter.userTappedItself()
+        })
+        
+    }
+    
+    // MARK: - Setups
+    
+    private func setupView() {
+        title = "Список студентов"
+        view.backgroundColor = Constants.Colors.background
+    }
+    
+    private func setupHierarchy() {
+        view.addSubview(studentView)
+        view.addSubview(studentList)
+    }
+    
+    private func setupLayout() {
+        studentView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(view.snp.width).multipliedBy(0.4)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    func performViewController(_ controller: UIViewController) {
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

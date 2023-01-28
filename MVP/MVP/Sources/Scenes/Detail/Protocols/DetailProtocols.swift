@@ -10,9 +10,9 @@ import UIKit
 // MARK: - Presenter protocol
 
 protocol DetailPresenterProtocol: AnyObject {
-    var model: PersonsModelProtocol { get set }
+    var model: IDProtocol { get set }
     var view: DetailViewProtocol? { get set }
-    init(with model: PersonsModelProtocol)
+    init(with model: IDProtocol)
 }
 
 // MARK: - Login view protocol

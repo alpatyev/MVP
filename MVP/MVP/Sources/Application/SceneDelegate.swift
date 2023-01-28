@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        guard let loginSceneController = SceneBuilder.createLoginScene(with: StudentsGroupModel()) else { return }
+        let loginSceneController = SceneBuilder.createLoginScene(with: StudentsGroupModel())
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = loginSceneController
         window?.makeKeyAndVisible()

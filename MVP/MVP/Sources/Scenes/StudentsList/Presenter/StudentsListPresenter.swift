@@ -24,4 +24,11 @@ final class StudentsListPresenter: StudentsListPresenterProtocol {
         self.model = model
         self.student = student
     }
+    
+    // MARK: - Move to detail scene
+    
+     func userTappedItself() {
+        let detailView = SceneBuilder.createDetailScene(with: student)
+        view?.performViewController(detailView)
+    }
 }
