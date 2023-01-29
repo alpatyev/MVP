@@ -20,7 +20,7 @@ final class SceneBuilder {
     static func createStudentsListScene(with data: StudentsGroupModel?, selected student: Student?) -> UIViewController {
         let presenter = StudentsListPresenter()
         let view = StudentsListViewController()
-        presenter.configure(with: data, student, view)
+        presenter.configure(with: data, student: student, view: view)
         view.configure(with: presenter)
         return UINavigationController(rootViewController: view)
     }

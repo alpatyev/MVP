@@ -5,6 +5,8 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
+import Foundation
+
 final class StudentsGroupModel {
     
     // MARK: - List of students
@@ -31,5 +33,12 @@ final class StudentsGroupModel {
             return nil
         }
         return participants[index]
+    }
+    
+    func findPerson(at path: IndexPath) -> Student? {
+        guard path.row < participants.count && path.row >= 0 else {
+            return nil
+        }
+        return participants[path.row]
     }
 }

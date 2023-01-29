@@ -12,6 +12,8 @@ import SnapKit
 
 protocol StudentsListViewProtocol: UIViewController {
     var presenter: StudentsListPresenterProtocol? { get set }
+    func updateSubviews(with data: Student?)
+    func updateSubviews(with data: StudentsGroupModel?)
     func performViewController(_ controller: UIViewController)
 }
 
@@ -40,17 +42,26 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
         setupView()
         setupHierarchy()
         setupLayout()
+        presenter?.updateViewData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presentNextAfterOneSecond()
     }
     
     // MARK: - Configure with presenter
     
     public func configure(with presenter: StudentsListPresenterProtocol?) {
         self.presenter = presenter
+        
+    }
+    
+    func updateSubviews(with data: Student?) {
+        studentView.configure(with: data)
+    }
+    
+    func updateSubviews(with data: StudentsGroupModel?) {
+        //
     }
     
     // MARK: - Setups
