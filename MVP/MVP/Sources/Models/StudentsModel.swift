@@ -5,11 +5,11 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-final class StudentsGroupModel: PersonsModelProtocol {
+final class StudentsGroupModel {
     
     // MARK: - List of students
     
-    var participants: [IDProtocol]
+    var participants: [Student]
     
     // MARK: - Last homework number
     
@@ -23,7 +23,7 @@ final class StudentsGroupModel: PersonsModelProtocol {
     
     // MARK: - Common methods
     
-    func findPerson(named: String?) -> IDProtocol? {
+    func findPerson(named: String?) -> Student? {
         guard named != nil && named != "" else {
             return nil
         }

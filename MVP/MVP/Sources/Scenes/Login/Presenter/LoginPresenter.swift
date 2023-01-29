@@ -5,26 +5,39 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
+// MARK: - Presenter protocol
+
+protocol LoginPresenterProtocol: AnyObject {
+    var view: LoginViewProtocol? { get set }
+    
+    func textFieldSelected()
+    func keyboardReturnTapped(text: String?)
+    func loginButtonTapped(text: String?)
+}
+
+// MARK: - Login presenter class
+
 final class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Model
     
-    var model: PersonsModelProtocol
+    private var model: StudentsGroupModel?
     
     // MARK: - View
     
     weak var view: LoginViewProtocol?
     
-    // MARK: - Lifecycle
+    // MARK: - Configure with model and view
     
-    init(with model: PersonsModelProtocol) {
+    public func configure(with model: StudentsGroupModel?, _ view: LoginViewProtocol?) {
         self.model = model
+        self.view = view
     }
     
     // MARK: - Move to next scene
     
     private func findPersonWith(name: String?) {
-        guard let person = model.findPerson(named: name) else {
+        guard let person = model?.findPerson(named: name) else {
             return
         }
         let mainView = SceneBuilder.createStudentsListScene(with: model, selected: person)

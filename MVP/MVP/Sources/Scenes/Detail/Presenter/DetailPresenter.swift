@@ -5,21 +5,28 @@
 //  Created by Nikita Alpatiev on 1/27/23.
 //
 
-import Foundation
+// MARK: - Detail presenter protocol
+
+protocol DetailPresenterProtocol: AnyObject {
+    var view: DetailViewProtocol? { get set }
+}
+
+// MARK: - Detail presenter class
 
 final class DetailPresenter: DetailPresenterProtocol {
     
     // MARK: - Model
     
-    var model: IDProtocol
+    private var student: Student?
     
     // MARK: - View
     
     weak var view: DetailViewProtocol?
     
-    // MARK: - Lifecycle
+    // MARK: - Configure with model and view
     
-    required init(with model: IDProtocol) {
-        self.model = model
+    public func configure(with student: Student?, _ view: DetailViewProtocol?) {
+        self.student = student
+        self.view = view
     }
 }

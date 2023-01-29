@@ -8,23 +8,21 @@
 import UIKit
 import SnapKit
 
+// MARK: - Login view protocol
+
+protocol DetailViewProtocol: UIViewController {
+    var presenter: DetailPresenterProtocol? { get set }
+}
+
+// MARK: - Detail view class
+
 final class DetailViewController: UIViewController, DetailViewProtocol {
     
     // MARK: - Presenter
     
-    var presenter: DetailPresenterProtocol
+    var presenter: DetailPresenterProtocol?
     
     // MARK: - Lifecycle
-    
-    init(with presenter: DetailPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        presenter.view = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +31,16 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         setupLayout()
     }
     
+    // MARK: - Configure with presenter
+    
+    public func configure(with presenter: DetailPresenterProtocol?) {
+        self.presenter = presenter
+    }
+    
     // MARK: - Setups
     
     private func setupView() {
-        title = presenter.model.name
+        title = "<Имя студента>"
         view.backgroundColor = Constants.Colors.background
         navigationController?.navigationBar.topItem?.backButtonTitle = "Назад"
     }

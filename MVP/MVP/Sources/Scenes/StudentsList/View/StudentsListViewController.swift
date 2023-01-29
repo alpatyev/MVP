@@ -8,6 +8,13 @@
 import UIKit
 import SnapKit
 
+// MARK: - Login view protocol
+
+protocol StudentsListViewProtocol: UIViewController {
+    var presenter: StudentsListPresenterProtocol? { get set }
+    func performViewController(_ controller: UIViewController)
+}
+
 final class StudentsListViewController: UIViewController, StudentsListViewProtocol {
     
     // MARK: - UI
@@ -24,19 +31,9 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     // MARK: - Presenter
     
-    var presenter: StudentsListPresenterProtocol
-    
+    var presenter: StudentsListPresenterProtocol?
+
     // MARK: - Lifecycle
-    
-    init(with presenter: StudentsListPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        presenter.view = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +44,13 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
-            self?.presenter.userTappedItself()
-        })
-        
+        presentNextAfterOneSecond()
+    }
+    
+    // MARK: - Configure with presenter
+    
+    public func configure(with presenter: StudentsListPresenterProtocol?) {
+        self.presenter = presenter
     }
     
     // MARK: - Setups

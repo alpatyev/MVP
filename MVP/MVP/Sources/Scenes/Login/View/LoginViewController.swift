@@ -8,6 +8,16 @@
 import UIKit
 import SnapKit
 
+// MARK: - Login view protocol
+
+protocol LoginViewProtocol: UIViewController {
+    var presenter: LoginPresenterProtocol? { get set }
+    
+    func highlightTextField()
+    func revertHiglightedTextField()
+    func performViewController(_ controller: UIViewController)
+}
+
 final class LoginViewController: UIViewController, LoginViewProtocol {
     
     // MARK: - UI
@@ -24,7 +34,7 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.roundedBorders()
-        textField.createShadowLayer(opacity: 2)
+        textField.createShadowLayer()
         textField.backgroundColor = Constants.Colors.background
         textField.textAlignment = .center
         textField.placeholder = "введите имя"
@@ -53,30 +63,27 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     
     // MARK: - Prenter
     
-    var presenter: LoginPresenterProtocol
+    var presenter: LoginPresenterProtocol?
     
     // MARK: - Lifecycle
-    
-    init(with presenter: LoginPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        presenter.view = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupHierarchy()
         setupLayout()
+        presentNextAfterOneSecond()
     }
     
     func performViewController(_ controller: UIViewController) {
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
+    }
+    
+    // MARK: - Configure with presenter
+    
+    public func configure(with presenter: LoginPresenterProtocol?) {
+        self.presenter = presenter
     }
     
     // MARK: - Setups
@@ -115,7 +122,7 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     // MARK: - Actions
     
     @objc private func loginTapped() {
-        presenter.loginButtonTapped(text: nameTextField.text)
+        presenter?.loginButtonTapped(text: nameTextField.text)
     }
         
     func highlightTextField() {
@@ -132,12 +139,12 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        presenter.keyboardReturnTapped(text: textField.text)
+        presenter?.keyboardReturnTapped(text: textField.text)
         return true
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        presenter.textFieldSelected()
+        presenter?.textFieldSelected()
         return true
     }
 }

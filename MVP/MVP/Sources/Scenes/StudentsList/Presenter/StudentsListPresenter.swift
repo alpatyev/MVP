@@ -5,30 +5,39 @@
 //  Created by Nikita Alpatiev on 1/25/23.
 //
 
-import Foundation
+// MARK: - Presenter protocol
+
+protocol StudentsListPresenterProtocol: AnyObject {
+    var view: StudentsListViewProtocol? { get set }
+    func userTappedItself()
+}
+
+// MARK: - Students list presenter class
 
 final class StudentsListPresenter: StudentsListPresenterProtocol {
     
     // MARK: - Models
     
-    var model: PersonsModelProtocol
-    var student: IDProtocol
+    private var model: StudentsGroupModel?
+    private var student: Student?
     
     // MARK: - View
     
     weak var view: StudentsListViewProtocol?
     
-    // MARK: - Lifecycle
+    // MARK: - Configure with model and view
     
-    init(with model: PersonsModelProtocol, selected student: IDProtocol) {
+    public func configure(with model: StudentsGroupModel?, _ student: Student?,_ view: StudentsListViewProtocol?) {
         self.model = model
         self.student = student
+        self.view = view
     }
+
     
     // MARK: - Move to detail scene
     
      func userTappedItself() {
-        let detailView = SceneBuilder.createDetailScene(with: student)
+         let detailView = SceneBuilder.createDetailScene(with: student)
         view?.performViewController(detailView)
     }
 }

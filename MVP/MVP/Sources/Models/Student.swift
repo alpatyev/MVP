@@ -5,7 +5,7 @@
 //  Created by Nikita Alpatiev on 1/27/23.
 //
 
-struct Student: IDProtocol {
+struct Student {
     var name: String
     var image: String
     var team: String

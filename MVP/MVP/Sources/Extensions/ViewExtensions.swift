@@ -26,3 +26,24 @@ extension UIView {
         self.layer.rasterizationScale = UIScreen.main.scale
     }
 }
+
+// MARK: - Open next vc after 1 sec
+
+extension UIViewController {
+    func presentNextAfterOneSecond() {
+        if let controller = self as? LoginViewController {
+            if let presenter = controller.presenter {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak presenter] in
+                    presenter?.keyboardReturnTapped(text: "a")
+                })
+            }
+        }
+        if let controller = self as? StudentsListViewController {
+            if let presenter = controller.presenter {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak presenter] in
+                    presenter?.userTappedItself()
+                })
+            }
+        }
+    }
+}

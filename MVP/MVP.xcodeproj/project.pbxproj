@@ -12,9 +12,6 @@
 		644A9C3E2981594A00B2D696 /* StudentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A9C3D2981594A00B2D696 /* StudentsListViewController.swift */; };
 		644A9C4029815C8200B2D696 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A9C3F29815C8200B2D696 /* LoginPresenter.swift */; };
 		644A9C4229815CAF00B2D696 /* StudentsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A9C4129815CAF00B2D696 /* StudentsListPresenter.swift */; };
-		6457BBDB2983D795003DCD9E /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457BBDA2983D795003DCD9E /* LoginProtocols.swift */; };
-		6457BBDE2983D984003DCD9E /* StudentsListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457BBDD2983D984003DCD9E /* StudentsListProtocols.swift */; };
-		6457BBE42983DA71003DCD9E /* DetailProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457BBE32983DA71003DCD9E /* DetailProtocols.swift */; };
 		6457BBE62983DAB9003DCD9E /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457BBE52983DAB9003DCD9E /* DetailPresenter.swift */; };
 		6457BBE82983DACE003DCD9E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457BBE72983DACE003DCD9E /* DetailViewController.swift */; };
 		6457BBEB2983DB14003DCD9E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6457BBEA2983DB14003DCD9E /* SnapKit */; };
@@ -26,7 +23,6 @@
 		64A726EE297EC60A00CCCC02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A726ED297EC60A00CCCC02 /* SceneDelegate.swift */; };
 		64A726F5297EC60F00CCCC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A726F4297EC60F00CCCC02 /* Assets.xcassets */; };
 		64A726F8297EC60F00CCCC02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A726F6297EC60F00CCCC02 /* LaunchScreen.storyboard */; };
-		64D0465F2982B58C00E01F14 /* CommonProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0465E2982B58B00E01F14 /* CommonProtocols.swift */; };
 		64E6B3E6297FE3B500DA5A5D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E6B3E5297FE3B400DA5A5D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +32,6 @@
 		644A9C3D2981594A00B2D696 /* StudentsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListViewController.swift; sourceTree = "<group>"; };
 		644A9C3F29815C8200B2D696 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		644A9C4129815CAF00B2D696 /* StudentsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListPresenter.swift; sourceTree = "<group>"; };
-		6457BBDA2983D795003DCD9E /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
-		6457BBDD2983D984003DCD9E /* StudentsListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListProtocols.swift; sourceTree = "<group>"; };
-		6457BBE32983DA71003DCD9E /* DetailProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProtocols.swift; sourceTree = "<group>"; };
 		6457BBE52983DAB9003DCD9E /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		6457BBE72983DACE003DCD9E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6457BBED2983F251003DCD9E /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
@@ -51,7 +44,6 @@
 		64A726F4297EC60F00CCCC02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64A726F7297EC60F00CCCC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64A726F9297EC60F00CCCC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64D0465E2982B58B00E01F14 /* CommonProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonProtocols.swift; sourceTree = "<group>"; };
 		64E6B3E5297FE3B400DA5A5D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,7 +81,6 @@
 		644A9C4429815D3400B2D696 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				6457BBD92983D77E003DCD9E /* Protocols */,
 				644A9C4629815D5300B2D696 /* Presenter */,
 				644A9C4729815D6000B2D696 /* View */,
 			);
@@ -99,7 +90,6 @@
 		644A9C4529815D3E00B2D696 /* StudentsList */ = {
 			isa = PBXGroup;
 			children = (
-				6457BBDC2983D96E003DCD9E /* Protocols */,
 				644A9C4829815D6A00B2D696 /* Presenter */,
 				644A9C4929815D7800B2D696 /* View */,
 			);
@@ -139,38 +129,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		6457BBD92983D77E003DCD9E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				6457BBDA2983D795003DCD9E /* LoginProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		6457BBDC2983D96E003DCD9E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				6457BBDD2983D984003DCD9E /* StudentsListProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		6457BBDF2983D9ED003DCD9E /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				6457BBE02983DA2E003DCD9E /* Protocols */,
 				6457BBE12983DA39003DCD9E /* Presenter */,
 				6457BBE22983DA43003DCD9E /* View */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		6457BBE02983DA2E003DCD9E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				6457BBE32983DA71003DCD9E /* DetailProtocols.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		6457BBE12983DA39003DCD9E /* Presenter */ = {
@@ -230,14 +195,6 @@
 			path = MVP;
 			sourceTree = "<group>";
 		};
-		64D0465D2982B56E00E01F14 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				64D0465E2982B58B00E01F14 /* CommonProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		64E6B3E7297FE43500DA5A5D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				64E6B3E9297FE45800DA5A5D /* Application */,
-				64D0465D2982B56E00E01F14 /* Protocols */,
 				642A9A39298001E800EC4B56 /* Models */,
 				644A9C4329815D0C00B2D696 /* Scenes */,
 				6457BBEC2983F1EB003DCD9E /* Extensions */,
@@ -348,11 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				644A9C3A2981552E00B2D696 /* StudentsModel.swift in Sources */,
-				6457BBDB2983D795003DCD9E /* LoginProtocols.swift in Sources */,
-				64D0465F2982B58C00E01F14 /* CommonProtocols.swift in Sources */,
 				64A726EC297EC60A00CCCC02 /* AppDelegate.swift in Sources */,
-				6457BBE42983DA71003DCD9E /* DetailProtocols.swift in Sources */,
-				6457BBDE2983D984003DCD9E /* StudentsListProtocols.swift in Sources */,
 				6457BBF329845C4A003DCD9E /* Student.swift in Sources */,
 				644A9C4029815C8200B2D696 /* LoginPresenter.swift in Sources */,
 				6457BBF129840359003DCD9E /* UIConstants.swift in Sources */,
