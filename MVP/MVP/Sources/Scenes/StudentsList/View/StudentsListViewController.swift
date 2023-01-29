@@ -28,12 +28,20 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     private lazy var studentList: UITableView = {
         let list = UITableView()
+        list.delegate = self
+        list.dataSource = self
+        list.register(StudentCell.self,
+                      forCellReuseIdentifier: StudentCell.id)
         return list
     }()
     
     // MARK: - Presenter
     
     var presenter: StudentsListPresenterProtocol?
+    
+    // MARK: - List of students
+    
+    var studentsArray: [Student]?
 
     // MARK: - Lifecycle
     
@@ -43,6 +51,7 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
         setupHierarchy()
         setupLayout()
         presenter?.updateViewData()
+        presentNextAfterOneSecond()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,7 +70,8 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     }
     
     func updateSubviews(with data: StudentsGroupModel?) {
-        //
+        studentsArray = data?.participants
+        studentList.reloadData()
     }
     
     // MARK: - Setups
@@ -69,6 +79,8 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     private func setupView() {
         title = "Список студентов"
         view.backgroundColor = Constants.Colors.background
+        let tap = UITapGestureRecognizer(target: self, action: #selector(studentTapped))
+        studentView.addGestureRecognizer(tap)
     }
     
     private func setupHierarchy() {
@@ -82,6 +94,12 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
             make.left.right.equalToSuperview()
             make.height.equalTo(view.snp.width).multipliedBy(0.4)
         }
+        
+        studentList.snp.makeConstraints { make in
+            make.top.equalTo(studentView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaInsets)
+        }
     }
     
     // MARK: - Actions
@@ -89,4 +107,27 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     func performViewController(_ controller: UIViewController) {
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    @objc private func studentTapped(_ sender: UITapGestureRecognizer? = nil) {
+        presenter?.userTappedItself()
+    }
+}
+
+// MARK: - Table view delegates
+
+extension StudentsListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        studentsArray?.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = studentList.dequeueReusableCell(withIdentifier: StudentCell.id,
+                                                  for: indexPath) as? StudentCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with: studentsArray?[indexPath.row])
+        return cell
+    }
+    
+    
 }

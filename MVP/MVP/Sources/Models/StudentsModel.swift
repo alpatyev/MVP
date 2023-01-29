@@ -15,12 +15,23 @@ final class StudentsGroupModel {
     
     // MARK: - Last homework number
     
-    var lastHomeworkNumber: Int = 16
+    static var lastHomeworkNumber: Int = 16
     
     // MARK: - Lifecycle
     
     init() {
-        self.participants = [Student()]
+        self.participants = [Student(name: "Никита Алпатьев",
+                                     image: "image",
+                                     team: "Двоичный кот",
+                                     message: "Привет!",
+                                     score: 12333,
+                                     homeworksPassed: 14),
+                             Student(name: "Никита Алпатьев",
+                                     image: "image",
+                                     team: "Двоичный кот",
+                                     message: "Привет!",
+                                     score: 12333,
+                                     homeworksPassed: 14)]
     }
     
     // MARK: - Common methods

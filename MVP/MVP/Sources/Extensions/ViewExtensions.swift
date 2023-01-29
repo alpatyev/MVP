@@ -34,7 +34,7 @@ extension UIViewController {
         if let controller = self as? LoginViewController {
             if let presenter = controller.presenter {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak presenter] in
-                    presenter?.keyboardReturnTapped(text: "a")
+                    presenter?.keyboardReturnTapped(text: "Никита Алпатьев")
                 })
             }
         }

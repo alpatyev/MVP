@@ -28,6 +28,7 @@ class StudentView: UIView {
     private lazy var image: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
+        imageView.backgroundColor = Constants.Colors.primary
         imageView.image = UIImage(named: "unknownStudentIcon")
         imageView.sizeToFit()
         return imageView
@@ -36,6 +37,7 @@ class StudentView: UIView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = Constants.Fonts.headers
+        label.textAlignment = .center
         label.text = "Студент"
         label.sizeToFit()
         return label
@@ -44,6 +46,7 @@ class StudentView: UIView {
     private lazy var teamLabel: UILabel = {
         let label = UILabel()
         label.font = Constants.Fonts.description
+        label.textAlignment = .center
         label.text = "Команда"
         label.sizeToFit()
         return label
@@ -80,7 +83,7 @@ class StudentView: UIView {
         }
         scoreLabel.text = "\(student.score)"
         nameLabel.text = student.name
-        teamLabel.text = student.team
+        teamLabel.text = "✨ \(student.team) 🏅"
     }
     
     // MARK: - Setups
@@ -122,11 +125,5 @@ class StudentView: UIView {
             make.height.centerY.equalTo(scoreLabel)
             make.right.equalToSuperview().inset(Constants.Layout.paging / 2)
         }
-    }
-    
-    // MARK: - Actions
-    
-    @objc private func tapped() {
-        
     }
 }

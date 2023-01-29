@@ -13,12 +13,12 @@ struct Student {
     var score: Int = 0
     var homeworksPassed: Int = 0
     
-    init(name: String = "a",
-         image: String = "unknownStudentIcon",
-         team: String = "неизвестная тима",
-         message: String = "Привет! Я учусь на восьмом потоке mobDevCourse :)",
-         score: Int = 0,
-         homeworksPassed: Int = 0) {
+    init(name: String,
+         image: String,
+         team: String,
+         message: String,
+         score: Int,
+         homeworksPassed: Int) {
         self.name = name
         self.image = image
         self.team = team
