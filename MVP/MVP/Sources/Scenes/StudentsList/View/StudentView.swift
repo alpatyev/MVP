@@ -20,7 +20,7 @@ class StudentView: UIView {
         label.textAlignment = .center
         label.font = Constants.Fonts.headers
         label.layer.cornerRadius = 18
-        label.clipsToBounds = true
+        label.layer.masksToBounds = true
         label.sizeToFit()
         return label
     }()
@@ -28,23 +28,32 @@ class StudentView: UIView {
     private lazy var image: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "unknownStudentIcon")
+        imageView.backgroundColor = .clear
+        imageView.image = UIImage(named: "person.circle")
         imageView.sizeToFit()
         return imageView
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
+        label.roundedBorders()
+        label.backgroundColor = .white
         label.font = Constants.Fonts.headers
+        label.textAlignment = .center
         label.text = "Студент"
+        label.layer.masksToBounds = true
         label.sizeToFit()
         return label
     }()
     
     private lazy var teamLabel: UILabel = {
         let label = UILabel()
+        label.roundedBorders()
+        label.backgroundColor = .white
         label.font = Constants.Fonts.description
+        label.textAlignment = .center
         label.text = "Команда"
+        label.layer.masksToBounds = true
         label.sizeToFit()
         return label
     }()
@@ -80,16 +89,17 @@ class StudentView: UIView {
         }
         scoreLabel.text = "\(student.score)"
         nameLabel.text = student.name
-        teamLabel.text = student.team
+        teamLabel.text = "✨ \(student.team) 🏅"
     }
     
     // MARK: - Setups
     
     private func setupView() {
-        backgroundColor = Constants.Colors.background.withAlphaComponent(0.75)
+        backgroundColor = .clear
     }
     
     private func setupHierarchy() {
+        addBlurLayer()
         addSubview(image)
         addSubview(scoreLabel)
         addSubview(nameLabel)
@@ -123,10 +133,5 @@ class StudentView: UIView {
             make.right.equalToSuperview().inset(Constants.Layout.paging / 2)
         }
     }
-    
-    // MARK: - Actions
-    
-    @objc private func tapped() {
-        
-    }
 }
+
