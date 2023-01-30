@@ -8,19 +8,22 @@
 import Foundation
 
 final class StudentsGroupModel {
-    
     // MARK: - List of students
     
     var participants: [Student]
     
     // MARK: - Last homework number
     
-    var lastHomeworkNumber: Int = 16
+    static var lastHomeworkNumber: Int = 16
     
     // MARK: - Lifecycle
     
     init() {
-        self.participants = [Student()]
+        participants = NetworkDataManager.someData
+        
+        for i in 0..<participants.count {
+            participants[i].message += "! Я учусь на восьмом потоке школы MobDevFactory."
+        }
     }
     
     // MARK: - Common methods

@@ -15,6 +15,7 @@ protocol LoginViewProtocol: UIViewController {
     
     func highlightTextField()
     func revertHiglightedTextField()
+    func showAlert(_ text: String)
     func performViewController(_ controller: UIViewController)
 }
 
@@ -72,7 +73,6 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
         setupView()
         setupHierarchy()
         setupLayout()
-        presentNextAfterOneSecond()
     }
     
     func performViewController(_ controller: UIViewController) {
@@ -89,7 +89,8 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     // MARK: - Setups
     
     private func setupView() {
-        view.backgroundColor = Constants.Colors.background
+        view.insertBackgroundImage(named: "waves")
+        view.addBlurLayer()
     }
     
     private func setupHierarchy() {
@@ -126,12 +127,18 @@ final class LoginViewController: UIViewController, LoginViewProtocol {
     }
         
     func highlightTextField() {
-        view.backgroundColor = Constants.Colors.background.withAlphaComponent(0.65)
+        view.insertBackgroundImage(named: "waves", alpha: 0.68)
     }
     
     func revertHiglightedTextField() {
-        view.backgroundColor = Constants.Colors.background
+        view.insertBackgroundImage(named: "waves")
         nameTextField.resignFirstResponder()
+    }
+    
+    func showAlert(_ text: String) {
+        let alert = UIAlertController(title: "Ошибка 💩", message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

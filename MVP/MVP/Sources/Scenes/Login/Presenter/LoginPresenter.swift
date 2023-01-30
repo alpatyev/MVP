@@ -38,6 +38,7 @@ final class LoginPresenter: LoginPresenterProtocol {
     
     private func findPersonWith(name: String?) {
         guard let person = model?.findPerson(named: name) else {
+            view?.showAlert("Пользователь не найден (")
             return
         }
         let mainView = SceneBuilder.createStudentsListScene(with: model, selected: person)

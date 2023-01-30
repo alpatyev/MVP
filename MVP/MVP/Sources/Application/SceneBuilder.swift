@@ -29,7 +29,7 @@ final class SceneBuilder {
         let presenter = DetailPresenter()
         let view = DetailViewController()
         presenter.configure(with: student, view)
-        view.presenter = presenter
+        view.configure(with: presenter, student)
         return view
     }
 }
