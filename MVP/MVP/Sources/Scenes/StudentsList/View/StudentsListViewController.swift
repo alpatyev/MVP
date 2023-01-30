@@ -71,14 +71,6 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     }
     
     func updateSubviews(with data: StudentsGroupModel?) {
-        //
-    }
-    
-    func updateSubviews(with data: Student?) {
-        studentView.configure(with: data)
-    }
-    
-    func updateSubviews(with data: StudentsGroupModel?) {
         studentsArray = data?.participants
         studentList.reloadData()
     }
