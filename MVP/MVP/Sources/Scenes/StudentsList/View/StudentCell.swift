@@ -11,21 +11,23 @@ class StudentCell: UITableViewCell {
     
     static var id = "student cell"
     
-    private var divider = UIScreen.main.bounds.width * 0.035
-    
     // MARK: - UI
     
+    private var divider = UIScreen.main.bounds.width * 0.035
+
     private lazy var leftImage: UIImageView = {
         let imageView = UIImageView()
-        leftImage.backgroundColor = .systemGray3.withAlphaComponent(0.5)
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "person.crop.square.fill")
+        imageView.roundedBorders()
+        imageView.backgroundColor = .systemGray3.withAlphaComponent(0.5)
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     private lazy var mainTitle: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = .systemFont(ofSize: 18, weight: .thin)
         label.textAlignment = .left
         return label
     }()
@@ -43,9 +45,13 @@ class StudentCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        removeElements()
         setupHierarchy()
-        updateSubviews(frame)
+        updateLayout()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        removeElements()
     }
     
     // MARK: - Get model data
@@ -54,7 +60,9 @@ class StudentCell: UITableViewCell {
         guard let model = recieved else {
             return
         }
-        leftImage.image = UIImage.init(named: model.image)
+        if let imageExists = UIImage(named: model.image) {
+            leftImage.image = imageExists
+        }
         mainTitle.text = model.name
         subtitle.text = "\(model.score) 🏆"
     }
@@ -73,18 +81,15 @@ class StudentCell: UITableViewCell {
         contentView.addSubview(subtitle)
     }
     
-    private func updateSubviews(_ frame: CGRect) {
-        setupImage(frame)
+    private func updateLayout() {
+        setupImage()
         setupMainTitle()
         setupSubtitle()
     }
     
-    private func setupImage(_ frame: CGRect) {
-        let imageEdge = frame.height * 0.64
-        imageView?.layer.cornerRadius = imageEdge / 2
-        leftImage.snp.removeConstraints()
+    private func setupImage() {
         leftImage.snp.makeConstraints { make in
-            make.width.height.equalTo(imageEdge)
+            make.width.height.equalTo(contentView.snp.height).multipliedBy(0.8)
             make.left.equalTo(contentView).offset(divider)
             make.centerY.equalTo(contentView)
         }
@@ -93,19 +98,18 @@ class StudentCell: UITableViewCell {
     private func setupMainTitle() {
         mainTitle.snp.makeConstraints { make in
             make.left.equalTo(leftImage.snp.right).offset(divider)
-            make.right.equalTo(contentView)
-            make.height.equalTo(contentView)
-            make.bottom.equalTo(contentView)
+            make.height.equalTo(contentView).multipliedBy(0.8)
+            make.centerY.equalTo(contentView)
+            make.right.equalTo(subtitle.snp.left)
         }
     }
     
     private func setupSubtitle() {
         subtitle.snp.makeConstraints { make in
-            make.left.equalTo(leftImage.snp.right)
-            make.right.equalTo(contentView).inset(divider / 2)
-            make.height.equalTo(contentView)
+            make.width.equalToSuperview().dividedBy(4)
+            make.height.equalTo(contentView).multipliedBy(0.8)
+            make.right.equalTo(contentView).inset(divider)
             make.centerY.equalTo(contentView)
-            
         }
     }
 }

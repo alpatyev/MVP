@@ -23,11 +23,13 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     private lazy var studentView: StudentView = {
         let subview = StudentView()
+        subview.createShadowLayer(withCornerradius: 0, opacity: 0.75)
         return subview
     }()
     
     private lazy var studentList: UITableView = {
         let list = UITableView()
+        list.backgroundColor = .clear
         list.delegate = self
         list.dataSource = self
         list.register(StudentCell.self,
@@ -51,7 +53,6 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
         setupHierarchy()
         setupLayout()
         presenter?.updateViewData()
-        presentNextAfterOneSecond()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +63,6 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     public func configure(with presenter: StudentsListPresenterProtocol?) {
         self.presenter = presenter
-        
     }
     
     func updateSubviews(with data: Student?) {
@@ -78,7 +78,7 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
     
     private func setupView() {
         title = "Список студентов"
-        view.backgroundColor = Constants.Colors.background
+        view.insertBackgroundImage(named: "waves")
         let tap = UITapGestureRecognizer(target: self, action: #selector(studentTapped))
         studentView.addGestureRecognizer(tap)
     }
@@ -96,7 +96,7 @@ final class StudentsListViewController: UIViewController, StudentsListViewProtoc
         }
         
         studentList.snp.makeConstraints { make in
-            make.top.equalTo(studentView.snp.bottom)
+            make.top.equalTo(studentView.snp.bottom).offset(1)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaInsets)
         }
@@ -120,6 +120,10 @@ extension StudentsListViewController: UITableViewDelegate, UITableViewDataSource
         studentsArray?.count ?? 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        54
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = studentList.dequeueReusableCell(withIdentifier: StudentCell.id,
                                                   for: indexPath) as? StudentCell else {
@@ -129,5 +133,8 @@ extension StudentsListViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        studentList.deselectRow(at: indexPath, animated: true)
+        presenter?.userTappedRow(at: indexPath)
+    }
 }

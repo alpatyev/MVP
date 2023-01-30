@@ -25,6 +25,21 @@ extension UIView {
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
     }
+    
+    func insertBackgroundImage(named name: String, alpha: CGFloat = 1) {
+        if let image = UIImage(named: name) {
+            backgroundColor = UIColor(patternImage: image).withAlphaComponent(alpha)
+        }
+    }
+    
+    func addBlurLayer(opacity value: Float = 0.8) {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.layer.opacity = value
+        addSubview(blurEffectView)
+    }
 }
 
 // MARK: - Open next vc after 1 sec

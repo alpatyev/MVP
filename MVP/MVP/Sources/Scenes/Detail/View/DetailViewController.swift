@@ -67,22 +67,22 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         return stack
     }()
     
-    private lazy var messageView: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.layer.borderWidth = 1
-        label.layer.borderColor = Constants.Colors.primary.cgColor
-        label.layer.cornerRadius = 12
-        label.textColor = .black
-        label.font = UIFont.italicSystemFont(ofSize: 16)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
+    private lazy var messageView: UITextView = {
+        let subview = UITextView()
+        subview.backgroundColor = .clear.withAlphaComponent(0.5)
+        subview.layer.borderWidth = 1
+        subview.layer.borderColor = Constants.Colors.primary.cgColor
+        subview.layer.cornerRadius = 12
+        subview.textColor = .white
+        subview.font = UIFont.italicSystemFont(ofSize: 19)
+        subview.textAlignment = .left
+        subview.layer.masksToBounds = true
+        return subview
     }()
     
     private lazy var studentName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 24.0)
         label.textColor = .white
         label.text = "студент"
         return label
@@ -90,7 +90,7 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     private lazy var studentTeam: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
         label.text = "неизвестно"
         return label
@@ -98,16 +98,15 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
 
     private lazy var studentScore: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
-        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .systemRed
         label.text = "0"
-        
         return label
     }()
     
     private lazy var studentHWPassed: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
         label.text = "0 из 0"
         return label
@@ -115,7 +114,7 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     private lazy var studentTeamDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
         label.text = "команда"
         return label
@@ -123,7 +122,7 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
 
     private lazy var studentScoreDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
         label.text = "баллы"
         return label
@@ -131,7 +130,7 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     private lazy var studentHWPassedDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
         label.text = "сдано заданий"
         return label
@@ -172,17 +171,13 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     public func configure(with presenter: DetailPresenterProtocol, _ data: Student?) {
         self.presenter = presenter
-        
         guard let student = data else {
             return
         }
-        
-        if student.image != "unknownStudentIcon" {
-            if let imageThatExists = UIImage(named: student.image){
-                studentIcon.image = imageThatExists
-            }
+        title = student.name
+        if let imageThatExists = UIImage(named: student.image){
+            studentIcon.image = imageThatExists
         }
-        
         studentName.text = student.name
         studentTeam.text = student.team
         studentScore.text = "\(student.score)"
@@ -194,12 +189,12 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     // MARK: - Setups
     
     private func setupView() {
-        //title = presenter.model.name
         view.backgroundColor = Constants.Colors.background
         navigationController?.navigationBar.topItem?.backButtonTitle = "Назад"
     }
     
     private func setupHierarchy() {
+        view.insertBackgroundImage(named: "waves")
         view.addSubview(backgroundView)
         backgroundView.addSubview(studentIcon)
         backgroundView.addSubview(studentMessage)

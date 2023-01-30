@@ -8,7 +8,6 @@
 import Foundation
 
 final class StudentsGroupModel {
-    
     // MARK: - List of students
     
     var participants: [Student]
@@ -20,18 +19,11 @@ final class StudentsGroupModel {
     // MARK: - Lifecycle
     
     init() {
-        self.participants = [Student(name: "Никита Алпатьев",
-                                     image: "image",
-                                     team: "Двоичный кот",
-                                     message: "Привет!",
-                                     score: 12333,
-                                     homeworksPassed: 14),
-                             Student(name: "Никита Алпатьев",
-                                     image: "image",
-                                     team: "Двоичный кот",
-                                     message: "Привет!",
-                                     score: 12333,
-                                     homeworksPassed: 14)]
+        participants = NetworkDataManager.someData
+        
+        for i in 0..<participants.count {
+            participants[i].message += "! Я учусь на восьмом потоке школы MobDevFactory."
+        }
     }
     
     // MARK: - Common methods
