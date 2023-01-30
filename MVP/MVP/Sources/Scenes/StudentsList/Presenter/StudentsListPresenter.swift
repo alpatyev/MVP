@@ -13,7 +13,7 @@ protocol StudentsListPresenterProtocol: AnyObject {
     var view: StudentsListViewProtocol? { get set }
     func updateViewData()
     func userTappedItself()
-    func selectedRow(at path: IndexPath)
+    func userTappedRow(at path: IndexPath)
 }
 
 // MARK: - Students list presenter class
@@ -60,8 +60,9 @@ final class StudentsListPresenter: StudentsListPresenterProtocol {
         view?.performViewController(detailView)
     }
     
-    func selectedRow(at path: IndexPath) {
+    func userTappedRow(at path: IndexPath) {
         let detailView = SceneBuilder.createDetailScene(with: model?.findPerson(at: path))
         view?.performViewController(detailView)
     }
 }
+
