@@ -8,8 +8,16 @@
 import UIKit
 import SnapKit
 
+// MARK: - Login view protocol
+
+protocol DetailViewProtocol: UIViewController {
+    var presenter: DetailPresenterProtocol? { get set }
+}
+
+// MARK: - Detail view class
+
 final class DetailViewController: UIViewController, DetailViewProtocol {
-    
+
     // MARK: - UI
     
     private lazy var backgroundView: UIView = {
@@ -59,81 +67,82 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         return stack
     }()
     
-    private lazy var messageView: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.layer.borderWidth = 1
-        label.layer.borderColor = Constants.Colors.primary.cgColor
-        label.layer.cornerRadius = 12
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 18)
-        return label
+    private lazy var messageView: UITextView = {
+        let subview = UITextView()
+        subview.backgroundColor = .clear.withAlphaComponent(0.5)
+        subview.layer.borderWidth = 1
+        subview.layer.borderColor = Constants.Colors.primary.cgColor
+        subview.layer.cornerRadius = 12
+        subview.textColor = .white
+        subview.font = UIFont.italicSystemFont(ofSize: 19)
+        subview.textAlignment = .left
+        subview.layer.masksToBounds = true
+        return subview
     }()
     
     private lazy var studentName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 24.0)
         label.textColor = .white
-        label.text = "studentName"
+        label.text = "студент"
         return label
     }()
     
     private lazy var studentTeam: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
-        label.text = "Team"
+        label.text = "неизвестно"
         return label
     }()
 
     private lazy var studentScore: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
-        label.textColor = .black
-        label.text = "Score"
-        
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .systemRed
+        label.text = "0"
         return label
     }()
     
     private lazy var studentHWPassed: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
-        label.text = "HWPassed"
+        label.text = "0 из 0"
         return label
     }()
     
     private lazy var studentTeamDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
-        label.text = "TeamDate"
+        label.text = "команда"
         return label
     }()
 
     private lazy var studentScoreDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
-        label.text = "ScoreDate"
+        label.text = "баллы"
         return label
     }()
     
     private lazy var studentHWPassedDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont.italicSystemFont(ofSize: 14.0)
+        label.font = UIFont.italicSystemFont(ofSize: 16)
         label.textColor = .gray
-        label.text = "HWPassedDate"
+        label.text = "сдано заданий"
         return label
     }()
     
     private lazy var studentMessage: UILabel = {
-    let label = UILabel()
-    label.font = UIFont.boldSystemFont(ofSize: 15.0)
-    label.textColor = .white
-    label.text = "studentMessage"
-    return label
-}()
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 15.0)
+        label.textColor = .white
+        label.text = "8-ой поток"
+        return label
+    }()
     
     private lazy var studentIcon: UIImageView = {
         let imageView = UIImageView()
@@ -147,19 +156,9 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     // MARK: - Presenter
 
-    var presenter: DetailPresenterProtocol
+    var presenter: DetailPresenterProtocol?
     
     // MARK: - Lifecycle
-    
-    init(with presenter: DetailPresenterProtocol) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-        presenter.view = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,15 +167,34 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         setupLayout()
     }
     
+    // MARK: - Configure with student
+    
+    public func configure(with presenter: DetailPresenterProtocol, _ data: Student?) {
+        self.presenter = presenter
+        guard let student = data else {
+            return
+        }
+        title = student.name
+        if let imageThatExists = UIImage(named: student.image){
+            studentIcon.image = imageThatExists
+        }
+        studentName.text = student.name
+        studentTeam.text = student.team
+        studentScore.text = "\(student.score)"
+        messageView.text = student.message
+        studentHWPassed.text = "\(student.homeworksPassed) из \(StudentsGroupModel.lastHomeworkNumber)"
+    }
+    
+    
     // MARK: - Setups
     
     private func setupView() {
-        title = presenter.model.name
         view.backgroundColor = Constants.Colors.background
         navigationController?.navigationBar.topItem?.backButtonTitle = "Назад"
     }
     
     private func setupHierarchy() {
+        view.insertBackgroundImage(named: "waves")
         view.addSubview(backgroundView)
         backgroundView.addSubview(studentIcon)
         backgroundView.addSubview(studentMessage)
@@ -186,7 +204,6 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         detailView.addSubview(stackViewHW)
         detailView.addSubview(stackViewTeam)
         detailView.addSubview(stackViewScore)
-
     }
     
     private func setupLayout() {
@@ -210,7 +227,7 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
             make.width.equalTo(view.snp.width).offset(-20)
             make.height.equalTo(view.snp.width).multipliedBy(0.9)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.snp.top).offset(150)
+            make.top.equalTo(view.safeAreaLayoutGuide)
         }
         
         detailView.snp.makeConstraints { make in
@@ -235,11 +252,10 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
         }
         
         messageView.snp.makeConstraints { make in
-            make.width.equalTo(view.snp.width).offset(-20)
-            make.height.equalTo(view.snp.width).multipliedBy(0.4)
-            make.centerX.centerY.equalTo(view.snp.center)
-            make.bottom.equalTo(backgroundView.snp.bottom).offset(190)
+            make.left.right.equalTo(backgroundView)
+            make.top.equalTo(detailView.snp.bottom).offset(2)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    
     }
 }
+
